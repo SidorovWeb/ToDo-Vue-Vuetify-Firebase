@@ -82,9 +82,17 @@ const actions = {
           let postsArray = []
           // logic goes here
           snapshot.forEach((doc) => {
-            let post = doc.data()
-            post.id = doc.id
-            postsArray.push(post)
+            // console.log(
+            //   'Object.assign:',
+            //   Object.assign({ uid: doc.id }, doc.data())
+            // )
+            const post = doc.data()
+            // const id = doc.id
+            const currentId = fb.auth.currentUser.uid
+
+            if (post.userId === currentId) {
+              postsArray.push(post)
+            }
           })
           commit(mutationTypes.fetchTasksSuccess, postsArray)
         })

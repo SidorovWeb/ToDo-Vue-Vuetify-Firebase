@@ -104,6 +104,7 @@ const actions = {
       // создание объекта профиля пользователя в userCollections
       await fb.usersCollection.doc(user.uid).set({
         name: name,
+        email: email,
       })
       // set user profile in state.currentUser
       commit(mutationTypes.registerSuccess, {
